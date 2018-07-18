@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <h2>Showing content</h2>
+            <template v-if="show">
+                <p>Showing this content</p>
+            </template>
+            <template v-else>
+                <p>Hiding this content</p>
+            </template>
+        </div>
+        <div>
+            <h2>Lists</h2>
+            <template v-for="item, index in list" :key="index">
+                <h4>{{item}}</h4>
+                <p>index: {{index}}</p>
+            </template>
+        </div>
+        <div>
+            <h2>Number list</h2>
+            <div v-for="n in 10">
+                {{n}}
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                show: false,
+                list: ["Item 1", "Item 2", "Item 3", "Item 4"]
+            }
+        })
+    </script>
+</body>
+
+</html>

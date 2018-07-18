@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Events</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <span>Counter: {{counter}}</span>
+            <button @click="increase">Increase</button>
+            <button @click="counter += 2">Increase x 2</button>
+        </div>
+        <div>
+            <p @mousemove="updateCoordinates">
+                Coordinates: {{x}} / {{y}} -
+                <!-- https://vuejs.org/v2/guide/events.html#Event-Modifiers -->
+                <span @mousemove.stop>DEAD SPOT</span>
+            </p>
+        </div>
+        <div>
+            <!-- https://vuejs.org/v2/guide/events.html#Key-Modifiers -->
+            <input type="text" @keyup.enter="alertMe" />
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                counter: 1,
+                x: 0,
+                y: 0
+            },
+            methods: {
+                increase: function () {
+                    this.counter++;
+                },
+                updateCoordinates: function (event) {
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                },
+                alertMe: function (event) {
+                    alert(JSON.stringify(event, null, 2))
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

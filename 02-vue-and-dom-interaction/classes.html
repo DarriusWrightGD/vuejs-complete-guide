@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Classes</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .square {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            background-color: lightgrey;
+            margin: 20px;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .black {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="color">
+        <div class="square" :class="divClasses" @click="attachRed = !attachRed"></div>
+        <div class="square" :class="{'green': !attachBlack}" @click="attachBlack = !attachBlack"></div>
+        <div class="square" :class="color"></div>
+        <div class="square"></div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                attachRed: false,
+                attachBlack: false,
+                color: 'black'
+            },
+            computed: {
+                divClasses: function () {
+                    return {
+                        red: this.attachRed,
+                        black: !this.attachRed
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS Dom Interaction</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p v-once>Accessing title id: {{title}}</p>
+        <p>Hello World function call: {{sayHello()}}</p>
+        <p>Title printed {{printTitle()}}</p>
+        <!-- You have the ability to bind to attributes of an element for example the href attributes. This can be done through 'v-bind:href' or ':href'-->
+        <a v-bind:href="link">Google</a>
+        <a :href="link">Google</a>
+        <h3>v-html</h3>
+        <p v-html="completeLink"></p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                // We have access to all of the properties in the data object in the div with the id app
+                title: 'Hello World VueJS!',
+                link: 'http://google.com',
+                completeLink: '<a href="http://google.com">Google</a>'
+            },
+            methods: {
+                // In addition you will have access to all methods in the div 
+                sayHello: function () {
+                    this.title = "Hello!"
+                    return this.title;
+                },
+                printTitle: function () {
+                    // Vue proxies the data properties so that you have acess to them through the this properties
+                    return this.title;
+                    // The this keyword is required to access the data properties.
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

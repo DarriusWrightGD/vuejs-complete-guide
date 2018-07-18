@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Two Way Binding</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <div>
+
+            <input type="text" v-model="name" />
+            <span>The name: {{name}}</span>
+        </div>
+        <div>
+            <div>
+                <span>Result: {{result}},</span>
+                <span>The number is {{counter}}</span>
+            </div>
+            <button @click="counter++">Increase</button>
+            <button @click="counter--">Decrease</button>
+        </div>
+
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                name: 'Darrius',
+                counter: 0
+            },
+            // Computed is aware of the properties that are used within the function
+            // it will cache the results and if nothing has changed then it will not run the logic changed
+            computed: {
+                result: function () {
+                    if (this.counter > 0) {
+                        return "The number is positive";
+                    } else if (this.counter < 0) {
+                        return "The number is negative";
+                    } else {
+                        return "The number is zero"
+                    }
+                }
+            },
+            // For things that need to check for all changes, or need to be run async
+            watch: {
+                counter: function (value) {
+                    const vm = this;
+                    setTimeout(function () {
+                        vm.counter = 0;
+                    }, 2000)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
